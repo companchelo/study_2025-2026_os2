@@ -1,0 +1,123 @@
+---
+## Front matter
+title: "Лабораторная работа 7"
+subtitle: "Управление журналами событий
+в системе"
+author: "Хохлачёва Полина Дмитриевна"
+
+## Generic otions
+lang: ru-RU
+toc-title: "Содержание"
+
+## Bibliography
+bibliography: bib/cite.bib
+csl: pandoc/csl/gost-r-7-0-5-2008-numeric.csl
+
+## Pdf output format
+toc: true # Table of contents
+toc-depth: 2
+lof: true # List of figures
+lot: true # List of tables
+fontsize: 12pt
+linestretch: 1.5
+papersize: a4
+documentclass: scrreprt
+## I18n polyglossia
+polyglossia-lang:
+  name: russian
+  options:
+	- spelling=modern
+	- babelshorthands=true
+polyglossia-otherlangs:
+  name: english
+## I18n babel
+babel-lang: russian
+babel-otherlangs: english
+## Fonts
+mainfont: IBM Plex Serif
+romanfont: IBM Plex Serif
+sansfont: IBM Plex Sans
+monofont: IBM Plex Mono
+mathfont: STIX Two Math
+mainfontoptions: Ligatures=Common,Ligatures=TeX,Scale=0.94
+romanfontoptions: Ligatures=Common,Ligatures=TeX,Scale=0.94
+sansfontoptions: Ligatures=Common,Ligatures=TeX,Scale=MatchLowercase,Scale=0.94
+monofontoptions: Scale=MatchLowercase,Scale=0.94,FakeStretch=0.9
+mathfontoptions:
+## Biblatex
+biblatex: true
+biblio-style: "gost-numeric"
+biblatexoptions:
+  - parentracker=true
+  - backend=biber
+  - hyperref=auto
+  - language=auto
+  - autolang=other*
+  - citestyle=gost-numeric
+## Pandoc-crossref LaTeX customization
+figureTitle: "Рис."
+tableTitle: "Таблица"
+listingTitle: "Листинг"
+lofTitle: "Список иллюстраций"
+lotTitle: "Список таблиц"
+lolTitle: "Листинги"
+## Misc options
+indent: true
+header-includes:
+  - \usepackage{indentfirst}
+  - \usepackage{float} # keep figures where there are in the text
+  - \floatplacement{figure}{H} # keep figures where there are in the text
+---
+
+# Цель работы
+
+Получить навыки работы с журналами мониторинга различных событий в системе.
+
+# Выполнение лабораторной работы
+
+Открываем три терминала и во втором терминале запускаем мониторинг в реальном времени(рис. [-@fig:001]).
+
+![Запуск мониторинга](image/1.png){#fig:001 width=70%}
+
+Устанавливаем Apache(рис. [-@fig:002]).
+
+![Установка](image/2.png){#fig:002 width=70%}
+
+В файл конфигурации добавляем строку(рис. [-@fig:003]).
+
+![Добавление](image/3.png){#fig:003 width=70%}
+
+Создаём отдельный файл и вводим строку(рис. [-@fig:004]).
+
+![Создание и вывод](image/4.png){#fig:004 width=70%}
+
+Смотрим содержания журнала(рис. [-@fig:005]).
+
+![Содержание](image/5.png){#fig:005 width=70%}
+
+Просмотр содержания журнала без использования пейджера(рис. [-@fig:006]).
+
+![Просмотр](image/6.jpg){#fig:006 width=70%}
+
+Также можем просмотреть детальную информацию(рис. [-@fig:007]).
+
+![Детальная информация](image/7.jpg){#fig:007 width=70%}
+
+Получаем полномочия администратора,создаем каталог для хранения журнала, корректируем права доступа(рис. [-@fig:008]).
+
+![Права доступа](image/8.jpg){#fig:008 width=70%}
+
+Просмотр сообщений журнала(рис. [-@fig:009]).
+
+![Просмотр](image/9.jpg){#fig:009 width=70%}
+
+
+
+
+
+
+
+
+# Выводы
+
+Мы получили навыки работы с журналами мониторинга различных событий в системе.
