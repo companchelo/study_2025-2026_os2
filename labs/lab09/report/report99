@@ -1,0 +1,136 @@
+
+---
+## Front matter
+title: "Лабораторная работа №9"
+subtitle: "Управление SELinux"
+author: "Хохлачёва Полина Дмитриевна"
+
+## Generic otions
+lang: ru-RU
+toc-title: "Содержание"
+
+## Bibliography
+bibliography: bib/cite.bib
+csl: pandoc/csl/gost-r-7-0-5-2008-numeric.csl
+
+## Pdf output format
+toc: true # Table of contents
+toc-depth: 2
+lof: true # List of figures
+lot: true # List of tables
+fontsize: 12pt
+linestretch: 1.5
+papersize: a4
+documentclass: scrreprt
+## I18n polyglossia
+polyglossia-lang:
+  name: russian
+  options:
+	- spelling=modern
+	- babelshorthands=true
+polyglossia-otherlangs:
+  name: english
+## I18n babel
+babel-lang: russian
+babel-otherlangs: english
+## Fonts
+mainfont: IBM Plex Serif
+romanfont: IBM Plex Serif
+sansfont: IBM Plex Sans
+monofont: IBM Plex Mono
+mathfont: STIX Two Math
+mainfontoptions: Ligatures=Common,Ligatures=TeX,Scale=0.94
+romanfontoptions: Ligatures=Common,Ligatures=TeX,Scale=0.94
+sansfontoptions: Ligatures=Common,Ligatures=TeX,Scale=MatchLowercase,Scale=0.94
+monofontoptions: Scale=MatchLowercase,Scale=0.94,FakeStretch=0.9
+mathfontoptions:
+## Biblatex
+biblatex: true
+biblio-style: "gost-numeric"
+biblatexoptions:
+  - parentracker=true
+  - backend=biber
+  - hyperref=auto
+  - language=auto
+  - autolang=other*
+  - citestyle=gost-numeric
+## Pandoc-crossref LaTeX customization
+figureTitle: "Рис."
+tableTitle: "Таблица"
+listingTitle: "Листинг"
+lofTitle: "Список иллюстраций"
+lotTitle: "Список таблиц"
+lolTitle: "Листинги"
+## Misc options
+indent: true
+header-includes:
+  - \usepackage{indentfirst}
+  - \usepackage{float} # keep figures where there are in the text
+  - \floatplacement{figure}{H} # keep figures where there are in the text
+---
+
+# Цель работы
+
+Получить навыки работы с контекстом безопасности и политиками SELinux.
+
+# Выполнение лабораторной работы
+
+Получаем полномочия администратора, смотрим текущую информацию о состоянии, изменение режим работы(рис. [-@fig:001]).
+
+![Просмотр,изменения](image/1.jpg){#fig:001 width=70%}
+
+Установка с помощью редактора(рис. [-@fig:002]).
+
+![Установка](image/2.jpg){#fig:002 width=70%}
+
+Получаем полномочия администратора, просматриваем контекст безопасности файла, копируем файл в домашний каталоги,переписываем существенный файл, исправляем контекст безопасности, убеждаемся в этом(рис. [-@fig:003]).
+
+![Посматриваем,исправляем, убеждаемся](image/3.jpg){#fig:003 width=70%}
+
+Устанавливаем необходимое программное обеспечение(рис. [-@fig:004]).
+
+![Устанавливаем](image/4.jpg){#fig:004 width=70%}
+
+Создаём новое хранилище, создаём файл в каталоге с контентом веб-сервера(рис. [-@fig:005]).
+
+![Создаём](image/5.jpg){#fig:005 width=70%}
+
+Помещаем следующий текст(рис. [-@fig:006]).
+
+![Помещаем](image/6.jpg){#fig:006 width=70%}
+
+Запускаем веб-сервер(рис. [-@fig:007]).
+
+![Запускаем](image/7.jpg){#fig:007 width=70%}
+
+Комментируем строки и добавляем следующие отделы(рис. [-@fig:008]).
+
+![Комментируем, добавляем](image/8.jpg){#fig:008 width=70%}
+
+Снова обращаемся к веб-серверу(рис. [-@fig:009]).
+
+![Обращаемся](image/9.jpg){#fig:009 width=70%}
+
+Получаем полномочия администратора, смотрим список переключателей, изменяем текущее значение переключателя для службы, повторно смотрим список, изменяем постоянное значение и снова смотри список(рис. [-@fig:010]).
+
+![Смотрим, изменяем](image/9.jpg){#fig:010 width=70%}
+
+# Ответы на вопросы 
+
+1. setenforce 0
+2. getsebool -a
+3. setroubleshoot-server (или setroubleshoot)
+4. semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?" и затем restorecon -Rv /web
+5. /etc/selinux/config
+6. В файле /var/log/audit/audit.log (через службу auditd)
+7. semanage fcontext -l | grep ftp (или semanage fcontext -l -t ftp_t для более точного поиска)
+8. Временно переключить SELinux в разрешающий режим: setenforce 0
+
+
+
+
+
+
+# Выводы
+Мы получили навыки работы с контекстом безопасности и политиками SELinux.
+
