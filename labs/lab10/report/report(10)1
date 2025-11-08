@@ -1,0 +1,138 @@
+
+---
+## Front matter
+title: "Лабораторная работа №10"
+subtitle: "Основы работы с модулями ядра
+ операционной системы"
+author: "Хохлачёва Полина Дмитриевна"
+
+## Generic otions
+lang: ru-RU
+toc-title: "Содержание"
+
+## Bibliography
+bibliography: bib/cite.bib
+csl: pandoc/csl/gost-r-7-0-5-2008-numeric.csl
+
+## Pdf output format
+toc: true # Table of contents
+toc-depth: 2
+lof: true # List of figures
+lot: true # List of tables
+fontsize: 12pt
+linestretch: 1.5
+papersize: a4
+documentclass: scrreprt
+## I18n polyglossia
+polyglossia-lang:
+  name: russian
+  options:
+	- spelling=modern
+	- babelshorthands=true
+polyglossia-otherlangs:
+  name: english
+## I18n babel
+babel-lang: russian
+babel-otherlangs: english
+## Fonts
+mainfont: IBM Plex Serif
+romanfont: IBM Plex Serif
+sansfont: IBM Plex Sans
+monofont: IBM Plex Mono
+mathfont: STIX Two Math
+mainfontoptions: Ligatures=Common,Ligatures=TeX,Scale=0.94
+romanfontoptions: Ligatures=Common,Ligatures=TeX,Scale=0.94
+sansfontoptions: Ligatures=Common,Ligatures=TeX,Scale=MatchLowercase,Scale=0.94
+monofontoptions: Scale=MatchLowercase,Scale=0.94,FakeStretch=0.9
+mathfontoptions:
+## Biblatex
+biblatex: true
+biblio-style: "gost-numeric"
+biblatexoptions:
+  - parentracker=true
+  - backend=biber
+  - hyperref=auto
+  - language=auto
+  - autolang=other*
+  - citestyle=gost-numeric
+## Pandoc-crossref LaTeX customization
+figureTitle: "Рис."
+tableTitle: "Таблица"
+listingTitle: "Листинг"
+lofTitle: "Список иллюстраций"
+lotTitle: "Список таблиц"
+lolTitle: "Листинги"
+## Misc options
+indent: true
+header-includes:
+  - \usepackage{indentfirst}
+  - \usepackage{float} # keep figures where there are in the text
+  - \floatplacement{figure}{H} # keep figures where there are in the text
+---
+
+# Цель работы
+
+Получить навыки работы с утилитами управления модулями ядра операционной системы.
+
+# Выполнение лабораторной работы
+
+Получаем  полномочия администратора, смотрим какие есть устройства и модули ядра(рис. [-@fig:001]).
+
+![Просмотр](image/1.jpg){#fig:001 width=70%}
+
+Загруженные модули ядра(рис. [-@fig:002]).
+
+![Модули](image/2.jpg){#fig:002 width=70%}
+
+Смотрим загружен ли модуль ext4 и смотрим список загруженных модулей(рис. [-@fig:003]).
+
+![Посмотр](image/3.jpg){#fig:003 width=70%}
+
+Выделенная информация поясняется тем, что модуль не принимает настроек при вызове; его поведение фиксировано или определяется внешними средствами.(рис. [-@fig:004]).
+
+![Информация](image/4.jpg){#fig:004 width=70%}
+
+Пробуем выгрузить модуль ядра ext4 и также пробуем выгрузить модуль ядра xfs(рис. [-@fig:005]).
+
+![Выгрузка](image/5.jpg){#fig:005 width=70%}
+
+Получаем полномочия администратора, смотрим загружен ли модуль,смотрим список модулей ядра, выгружаем модуль ядра(рис. [-@fig:006]).
+
+![Модуль ядра](image/6.jpg){#fig:006 width=70%}
+
+Это информация о модуле ядра Bluetooth версии 2.22 для Linux 5.14.0.
+
+Модуль подписан, зависит от rfkill и, в отличие от предыдущего примера, имеет настраиваемые параметры для управления функциями Bluetooth .(рис. [-@fig:007]).
+
+![Модуль](image/7.jpg){#fig:007 width=70%}
+
+Список пакетов, обновление системы, обновление ядра и перезапуск системы(рис. [-@fig:008]).
+
+![Обновление ядра](image/8.jpg){#fig:008 width=70%}
+
+Просмотр версии ядра используемой в операционной системе(рис. [-@fig:009]).
+
+![Просмотр](image/9.jpg){#fig:009 width=70%}
+
+
+
+# Ответы на вопросы 
+
+1.  Текущая версия ядра: uname -r
+2.  Подробная информация о ядре: uname -a, cat /proc/version
+3.  Список загруженных модулей: lsmod
+4.  Определение/установка параметров модуля:
+    *   Просмотр: modinfo <имя_модуля> (искать parm:)
+    *   Установка: modprobe <имя_модуля> параметр=значение
+5.  Выгрузка модуля: rmmod <имя_модуля>
+6.  Ошибка при выгрузке модуля: Проверить зависимости (lsmod), остановить использующие процессы. В крайнем случае: rmmod -f (осторожно) или перезагрузка.
+7.  Поддерживаемые параметры модуля: modinfo <имя_модуля> (смотреть строки parm:).
+8.  Установка новой версии ядра: Через менеджер пакетов дистрибутива (apt, dnf, и т.п.), затем перезагрузить систему.
+
+
+
+
+
+
+# Выводы
+Мы получили навыки работы с утилитами управления модулями ядра операционной системы.
