@@ -1,0 +1,135 @@
+
+---
+## Front matter
+title: "Лабораторная работа №11"
+subtitle: "Управление загрузкой системы"
+author: "Хохлачёва Полина Дмитриевна"
+
+## Generic otions
+lang: ru-RU
+toc-title: "Содержание"
+
+## Bibliography
+bibliography: bib/cite.bib
+csl: pandoc/csl/gost-r-7-0-5-2008-numeric.csl
+
+## Pdf output format
+toc: true # Table of contents
+toc-depth: 2
+lof: true # List of figures
+lot: true # List of tables
+fontsize: 12pt
+linestretch: 1.5
+papersize: a4
+documentclass: scrreprt
+## I18n polyglossia
+polyglossia-lang:
+  name: russian
+  options:
+	- spelling=modern
+	- babelshorthands=true
+polyglossia-otherlangs:
+  name: english
+## I18n babel
+babel-lang: russian
+babel-otherlangs: english
+## Fonts
+mainfont: IBM Plex Serif
+romanfont: IBM Plex Serif
+sansfont: IBM Plex Sans
+monofont: IBM Plex Mono
+mathfont: STIX Two Math
+mainfontoptions: Ligatures=Common,Ligatures=TeX,Scale=0.94
+romanfontoptions: Ligatures=Common,Ligatures=TeX,Scale=0.94
+sansfontoptions: Ligatures=Common,Ligatures=TeX,Scale=MatchLowercase,Scale=0.94
+monofontoptions: Scale=MatchLowercase,Scale=0.94,FakeStretch=0.9
+mathfontoptions:
+## Biblatex
+biblatex: true
+biblio-style: "gost-numeric"
+biblatexoptions:
+  - parentracker=true
+  - backend=biber
+  - hyperref=auto
+  - language=auto
+  - autolang=other*
+  - citestyle=gost-numeric
+## Pandoc-crossref LaTeX customization
+figureTitle: "Рис."
+tableTitle: "Таблица"
+listingTitle: "Листинг"
+lofTitle: "Список иллюстраций"
+lotTitle: "Список таблиц"
+lolTitle: "Листинги"
+## Misc options
+indent: true
+header-includes:
+  - \usepackage{indentfirst}
+  - \usepackage{float} # keep figures where there are in the text
+  - \floatplacement{figure}{H} # keep figures where there are in the text
+---
+
+# Цель работы
+
+Получить навыки работы с загрузчиком системы GRUB2
+
+# Выполнение лабораторной работы
+
+В файле меняем параметры(рис. [-@fig:001]).
+
+![Параметры](image/1.jpg){#fig:001 width=70%}
+
+Запускаем терминал, получаем полномочия администратора, открываем файл, записываем изменения,  перезагрузка системы(рис. [-@fig:002]).
+
+![Файл](image/2.jpg){#fig:002 width=70%}
+
+Удаляем опции rhgb и quit, загружаем ядро системы(рис. [-@fig:003]).
+
+![Ядро](image/3.jpg){#fig:003 width=70%}
+
+С помощью команды  systemctl list-units, смотрим  список всех файлов модулей(рис. [-@fig:004]).
+
+![Спиосок](image/4.jpg){#fig:004 width=70%}
+
+Смотрим  задействованные переменные среды оболочки и перезагружаем систему(рис. [-@fig:005]).
+
+![Среда](image/5.jpg){#fig:005 width=70%}
+
+Заходим в режим редактора(рис. [-@fig:006]).
+
+![Редактор](image/6.jpg){#fig:006 width=70%}
+
+С помощью команды systemctl list-units смотрим список всех загруженных файлов модулей и убеждаемся, что их количество уменьшилось(рис. [-@fig:007]).
+
+![Список](image/7.jpg){#fig:007 width=70%}
+
+Входим в режи м редактора для сброса пароля(рис. [-@fig:008]).
+
+![Сброс пароля](image/8.jpg){#fig:008 width=70%}
+
+Получаем  доступ к системному образу для чтения и записи, делаем содержимое каталога новым корневым каталогом, устанавливаем новый пароль,загружаем политику SELinux, устанавливаем вручную  правильный тип контекста(рис. [-@fig:009]).
+
+![Пароль](image/9.jpg){#fig:009 width=70%}
+
+Входим в систему с изменённым паролем(рис. [-@fig:0010]).
+
+![Пароль](image/10.jpg){#fig:010 width=70%}
+
+
+# Ответы на вопросы 
+
+1. Какой файл конфигурации следует изменить для применения общих изменений в GRUB2?
+  /etc/default/grub
+
+2. Как называется конфигурационный файл GRUB2, в котором вы применяете изменения для GRUB2?
+  /etc/default/grub
+
+3. После внесения изменений в конфигурацию GRUB2, какую команду вы должны выполнить, чтобы изменения сохранились и воспринялись при загрузке системы?
+  sudo update-grub (для Debian/Ubuntu-подобных систем) или sudo grub2-mkconfig -o /boot/grub2/grub.cfg (для Fedora/CentOS/RHEL-подобных систем).
+
+
+
+
+
+# Выводы
+Мы получили навыки работы с загрузчиком системы GRUB2
